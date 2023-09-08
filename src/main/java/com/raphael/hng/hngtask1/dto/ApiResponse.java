@@ -6,7 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class InfoResponse {
+public class ApiResponse {
     private String slack_name;
     private String current_day;
     private String utc_time;

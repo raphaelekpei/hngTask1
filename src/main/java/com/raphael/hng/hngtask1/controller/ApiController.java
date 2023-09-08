@@ -1,7 +1,7 @@
 package com.raphael.hng.hngtask1.controller;
 
-import com.raphael.hng.hngtask1.dto.InfoResponse;
-import com.raphael.hng.hngtask1.service.InfoService;
+import com.raphael.hng.hngtask1.dto.ApiResponse;
+import com.raphael.hng.hngtask1.service.ApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class InfoController {
+public class ApiController {
 
-    private final InfoService infoService;
+    private final ApiService apiService;
 
     @GetMapping("/api")
-    public ResponseEntity<InfoResponse> getInfo(
+    public ResponseEntity<ApiResponse> getInfo(
             @RequestParam("slack_name") String slackName,
             @RequestParam("track") String track
     ){
-        InfoResponse infoResponse = infoService.getInfo(slackName, track);
-        return ResponseEntity.ok(infoResponse);
+        ApiResponse apiResponse = apiService.getInfo(slackName, track);
+        return ResponseEntity.ok(apiResponse);
 
     }
 }

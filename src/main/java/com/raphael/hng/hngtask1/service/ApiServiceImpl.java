@@ -1,7 +1,7 @@
 package com.raphael.hng.hngtask1.service;
 
 
-import com.raphael.hng.hngtask1.dto.InfoResponse;
+import com.raphael.hng.hngtask1.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.TimeZone;
 
 @Service
-public class InfoServiceImpl implements InfoService {
+public class ApiServiceImpl implements ApiService {
     @Override
-    public InfoResponse getInfo(String slackName, String track) {
+    public ApiResponse getInfo(String slackName, String track) {
 
 //        String specificSlackName = "Raphael Ekpei";
 //        String specificTrack = "backend";
@@ -26,7 +26,7 @@ public class InfoServiceImpl implements InfoService {
         String githubRepoUrl = "https://github.com/raphaelekpei/hngTask1";
 
         // Create the response object
-        return InfoResponse
+        return ApiResponse
                 .builder()
                 .slack_name(slackName)
                 .current_day(currentDay)
