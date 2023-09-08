@@ -7,12 +7,12 @@ import lombok.*;
 @Setter
 @Builder
 public class InfoResponse {
-    private String slackName;
-    private String currentDay;
-    private String utcTime;
+    private String slack_name;
+    private String current_day;
+    private String utc_time;
     private String track;
-    private String githubFileUrl;
-    private String githubRepoUrl;
-    private Integer statusCode;
+    private String github_file_Url;
+    private String github_repo_url;
+    private Integer status_code;
 
 }

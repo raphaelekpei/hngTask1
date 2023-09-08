@@ -2,6 +2,7 @@ package com.raphael.hng.hngtask1.service;
 
 
 import com.raphael.hng.hngtask1.dto.InfoResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -13,34 +14,41 @@ public class InfoServiceImpl implements InfoService {
     @Override
     public InfoResponse getInfo(String slackName, String track) {
 
-        // Specific user data
-        String specificSlackName = "Raphael Ekpei";
-        String specificTrack = "backend";
+//        String specificSlackName = "Raphael Ekpei";
+//        String specificTrack = "backend";
 
-        // Get the current day of the week
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
-        dayFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String currentDay = dayFormat.format(new Date());
+        String currentDay = getCurrentDayOfWeek();
 
-        // Get the current UTC time
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String utcTime = dateFormat.format(new Date());
+        String utcTime = getCurrentUTCDateTime();
 
         // Build GitHub URLs
-        String githubFileUrl = "https://github.com/your-username/your-repo/blob/main/your-file.ext";
-        String githubRepoUrl = "https://github.com/your-username/your-repo";
+        String githubFileUrl = "https://github.com/raphaelekpei/hngTask1/tree/master/src/main/java/com/raphael/hng/hngtask1";
+        String githubRepoUrl = "https://github.com/raphaelekpei/hngTask1";
 
         // Create the response object
         return InfoResponse
                 .builder()
-                .slackName(specificSlackName)
-                .currentDay(currentDay)
-                .utcTime(utcTime)
-                .track(specificTrack)
-                .githubFileUrl(githubFileUrl)
-                .githubRepoUrl(githubRepoUrl)
-                .statusCode(200)
+                .slack_name(slackName)
+                .current_day(currentDay)
+                .utc_time(utcTime)
+                .track(track)
+                .github_file_Url(githubFileUrl)
+                .github_repo_url(githubRepoUrl)
+                .status_code(HttpStatus.OK.value())
                 .build();
     }
+
+    private String getCurrentDayOfWeek() {
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE");
+        dayFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return dayFormat.format(new Date());
+    }
+
+    private String getCurrentUTCDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return dateFormat.format(new Date());
+
+    }
+
 }
